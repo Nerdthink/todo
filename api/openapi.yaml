@@ -4,7 +4,7 @@ info:
   description: A simple API for managing a to-do list
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
+  - url: https://todo-tgcw.onrender.com/
 paths:
   /todos:
     get:
