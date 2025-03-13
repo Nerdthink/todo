@@ -2,10 +2,10 @@
   "name": "to-do-list-api",
   "version": "1.0.0",
   "description": "A simple API for managing a to-do list",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "keywords": [
     "openapi-generator",
