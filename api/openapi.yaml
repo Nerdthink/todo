@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  title: To-Do List API
+  description: A simple API for managing a to-do list
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /todos:
+    get:
+      operationId: getTodos
+      x-eov-operation-handler: DefaultController
+      summary: Get all to-do items
+      responses:
+        '200':
+          description: A list of to-do items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoItem'
+    post:
+      operationId: addTodo
+      x-eov-operation-handler: DefaultController
+      summary: Add a new to-do item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoItem'
+      responses:
+        '201':
+          description: To-do item created
+  /todos/{id}:
+    get:
+      operationId: getTodoById
+      x-eov-operation-handler: DefaultController
+      summary: Get a specific to-do item by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single to-do item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem'
+    put:
+      operationId: updateTodo
+      x-eov-operation-handler: DefaultController
+      summary: Update a to-do item by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoItem'
+      responses:
+        '200':
+          description: To-do item updated
+    delete:
+      operationId: deleteTodo
+      x-eov-operation-handler: DefaultController
+      summary: Delete a to-do item by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: To-do item deleted
+components:
+  schemas:
+    TodoItem:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        completed:
+          type: boolean
+      required:
+        - title
